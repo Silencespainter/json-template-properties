@@ -5,15 +5,18 @@ import { default as ar } from "./ar.json";
 
 // UPDATE LANGUAGES
 var getProperties = function () {
-  const lang = navigator.language.toLowerCase();
-  switch (lang) {
-    case "en":
+  const lang = (str) => {
+    return navigator.language.toLowerCase().indexOf(str) !== -1;
+  };
+
+  switch (true) {
+    case lang("en"):
       return en;
       break;
-    case "es":
+    case lang("es"):
       return es;
       break;
-    case "ar":
+    case lang("ar"):
       return ar;
       break;
     default:

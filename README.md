@@ -40,6 +40,8 @@ var getProperties = function () {
 
 ```
 
+_the language is selected automaticly by browser propertie navigator.language_
+
 **3. USE**
 
 **3.1. import the getProperties**

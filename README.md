@@ -5,87 +5,85 @@
 **1. TRANSLATE: Right format of a json**
 
 ```
-  {
-    "global": {
-      "quijote": "in a place of the {0} whose {1} I don't want to remember"
-    },
-    "location": {},
-    "info": {}
-  }
+{
+  "welcome": "<h1>Welcome to the real {0}<h1>",
+  "main": "<p>Wake up, {0}...</p><p>{1} has you...</p>"
+}
 ```
 
-**2. UPDATE: the import of the json and languages in getProperties.js**
+**2. UPDATE: the import of the json and languages in properties.js**
 
 ```
 // UPDATE IMPORTS
-import { default as en } from "./es.json";
-import { default as es } from "./en.json";
-import { default as ar } from "./ar.json";
-...
+import { default as en } from "./en.json";
+import { default as es } from "./es.json";
 
 // UPDATE LANGUAGES
-var getProperties = function () {
-  const lang = navigator.language.toLowerCase();
-  switch (lang) {
-    case "en":
-      return en;
-      break;
-    case "es":
-      return es;
-      break;
-    case "ar":
-      return ar;
-      break;
-	...
-
+const properties = {
+  lang: function () {
+    const array = ["es", "en"];
+    const browserLang = navigator.language.toLowerCase();
+    array.forEach((str) => {
+      if (browserLang.indexOf(str) !== -1) {
+        return str;
+      }
+    });
+  },
+  get: () => {
+    const lang = properties.lang();
+    switch (lang) {
+      case "en":
+        return en;
+        break;
+      case "es":
+        return es;
+        break;
+      case "HERRE_LOWERCASE_STR":
+        return HERE_JSON_VARIABLE_IMPORTED;
+        break;
+      ...
 ```
 
 _the language is selected automaticly by browser propertie navigator.language_
 
 **3. USE**
 
-**3.1. import the getProperties**
+_3.1. Get properties_
 
 ```
 // ## Import
-import getProperties from "../properties/getProperties";
-import isPrint from "./modules/isPrint";
-let properties = getProperties();
+import properties from "../properties/properties";
 ```
 
-**3.1. import isPrint Module**
+_3.2. set properties_
 
 the _first paramenter_ is the string/propertie str and the _other parameters_ are the strings that will be replace sorted by {0}, {1}... pattern
 
 ```
-isPrint(
-  properties.global.quijote,
-  "MACNHA",
-  "NOMBRE"
+import properties from "../properties/properties";
+const txt = properties.get();
+
+properties.set(
+  txt.main,
+  "Neo",
+  "Matix"
 );
 ```
 
-# Installation
+---
 
-## Install
+## Installation and Features
 
 ```
+// INSTALL
 npm install
-```
 
-## Start Dev Server
-
-```
+// Start Dev Server
 npm start
-```
 
-## Build Prod Version
-
-```
+// Build Prod Version
 npm run build
 ```
-
-## Features:
 
 - ES6 Support via [babel](https://babeljs.io/) (v7)
 - SASS Support via [sass-loader](https://github.com/jtangelder/sass-loader)

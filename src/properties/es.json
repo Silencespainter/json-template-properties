@@ -1,7 +1,6 @@
 {
-  "global": {
-    "quijote": "en un lugar de la {0} de cuyo {1} no quiero acordarme"
-  },
-  "location": {},
-  "info": {}
+  "welcome": "<span>Bienvenido al {0} real</span>",
+  "main": "<p>Despierta, {0}...</p><p>{1} te posee...</p>",
+  "author": "Nando",
+  "backRepo": "Vuelve al repositorio"
 }
